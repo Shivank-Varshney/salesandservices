@@ -14,31 +14,76 @@
         width: 100%;
         height: 50%;
     }
-
     .star {
         color: red;
     }
-
     /* .depts {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
         grid-gap: 0px;
     } */
+    .bg-color{
+        background-color: #d5deb6;
+        font-family: 'Calibri', sans-serif;
+    }
+    .navbar{
+        background-image: linear-gradient(120deg,#a6c0fe 0,#f68084 100%);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 10;
+    }
+    .nav-link{
+        color: #795548 !important;
+        text-transform: uppercase;
+    }
+    .nav-link:hover{
+        background-color: rgba(255,255,255,0.1);
+        color: #795548 !important;
+        border-radius: 10px;
+    }
+    .nav-back{
+        background-image: linear-gradient(120deg,#f68084, #a6c0fe);
+        text-transform: capitalize;
+        color: #795548;
+    }
+    .tab-back{
+        background-color: rgb(238, 238, 238);
+    }
+    .thead{
+        background-image: linear-gradient(120deg,#f68084, #a6c0fe);
+        text-transform: capitalize;
+        color: #795548;
+    }
+    .login-back{
+        background-image: linear-gradient(120deg,#f68084, #a6c0fe);
+    }
 </style>
 
-<body>
-    <nav class="navbar navbar-light bg-light d-flex justify-content-end">
-        <form action="/dept/getallemp" class="form-inline">
-            <button class="btn btn-primary" type="submit">GET All Employees </button>
-        </form>
-        <a href="/emp/" class="btn btn-primary"> Employees page</a>
-        <a href="/emp/logout" class="btn btn-secondary "> logout</a>
+<body class="bg-color">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/dept/getallemp">GET All Employees</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-sm-4" href="/emp/">Employees page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-sm-4" href="/emp/logout">logout</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
     <!-- headfing of department page   -->
 
-    <div class="container">
-        <h1 class="text-center"> Department Page</h1>
+    <div class="container pt-5">
+        <h1 class="py-5"> Department Page</h1>
         <% if(typeof err !='undefined' ){ %>
             <div onclick="de()">
                 <% err.forEach(i=>{ %>
@@ -59,7 +104,7 @@
     <!---------------------- tabs of the home page ---------------------------->
 
     <div class="container">
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
+        <ul class="nav nav-back shadow-lg" id="myTab" role="tablist">
             <li class="nav-item">
                 <a class="nav-link active" id="grid-tab" data-toggle="tab" href="#gridv" role="tab"
                     aria-controls="gridv" aria-selected="true">Grid View</a>
@@ -76,12 +121,11 @@
                 <a class="nav-link" id="emp-tab" data-toggle="tab" href="#myemp" role="tab" aria-controls="myemp"
                     aria-selected="false">All Employees</a>
             </li>
-
-
-
         </ul>
 
-        <div class="tab-content" id="myTabContent">
+
+
+        <div class="tab-content tab-back" id="myTabContent">
 
             <!--------------------------- show departments with grid system  ----------------------->
             <div class="tab-pane fade show active" id="gridv" role="tabpanel" aria-labelledby="grid-tab">
@@ -94,7 +138,7 @@
                         <% if(typeof depts !='undefined' ){ %>
                             <% depts.forEach(i=>{ %>
 
-                                <div class="card col-md-3 m-5">
+                                <div class="card col m-5">
                                     <img class="card-img-top" src="image/<%- i.dept_image %>" alt="Card image cap">
                                     <div class="card-body">
                                         <h5 class="card-title">
@@ -121,9 +165,9 @@
             <!----------------------------------- tabel view of the departmets tabs  --------------------------->
             <div class="tab-pane fade" id="tabelv" role="tabpanel" aria-labelledby="profile-tab">
 
-                <div class=" dept_table">
-                    <table class="table table-striped" id="calldesc">
-                        <thead class="bg-dark text-white">
+                <div class=" dept_table  table-responsive">
+                    <table class="table table-striped table-bordered table-hover" id="calldesc">
+                        <thead class="thead">
                             <tr>
 
                                 <th scope="col">department id</th>
@@ -166,11 +210,11 @@
 
             <!-----------------------------  add department form  ------------------------------------->
 
-            <div class="tab-pane fade" id="add_dept" role="tabpanel" aria-labelledby="contact-tab">
-                <div id="addemp" class="col-md-7 d-flex justify-content-center align-self-center shadow m-auto mt-5">
+            <div class="tab-pane fade py-5" id="add_dept" role="tabpanel" aria-labelledby="contact-tab">
+                <div id="addemp" class="col-md-7 d-flex justify-content-center align-self-center shadow m-auto login-back">
 
 
-                    <form action="/dept/adddept" method="POST" enctype="multipart/form-data">
+                    <form action="/dept/adddept" method="POST" enctype="multipart/form-data" class="py-4">
                         <div>
                             <h1>Add Department</h1>
                         </div>
@@ -219,9 +263,9 @@
 
             <div class="tab-pane fade" id="myemp" role="tabpanel" aria-labelledby="emp-tab">
 
-                <div class="col-md-8 d-flex align-self-center justify-content-center m-auto ">
-                    <table class="table table-striped">
-                        <thead class="bg-dark text-white">
+                <div class="col d-flex align-self-center justify-content-center m-auto ">
+                    <table class="table table-striped table-bordered table-hover">
+                        <thead class="thead">
                             <tr>
                                 <th scope="col">Employee id</th>
                                 <th scope="col">Employee Name</th>

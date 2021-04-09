@@ -12,112 +12,123 @@
         #myform {
             display: none;
         }
+        .bg-color{
+            background-color: #d5deb6;
+            font-family: 'Calibri', sans-serif;
+        }
+        .navbar{
+            background-image: linear-gradient(120deg,#a6c0fe 0,#f68084 100%);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10;
+        }
+        .nav-link{
+            color: #795548 !important;
+            text-transform: uppercase;
+        }
+        .nav-link:hover{
+            background-color: rgba(255,255,255,0.1);
+            color: #795548 !important;
+            border-radius: 10px;
+        }
+        .header{
+            margin: 80px 0;
+            text-transform: capitalize;
+            font-weight: bolder;
+        }
+        .header h1, .header p{
+            color: #f68084;
+            text-shadow: 0px 0px 3px rgba(255,255,255,1);
+        }
+        .thead{
+            background-image: linear-gradient(120deg,#f68084, #a6c0fe);
+            text-transform: capitalize;
+            color: #795548;
+        }
     </style>
 </head>
 <style>
 
 </style>
 
-<body>
-
-    <nav class="navbar navbar-light bg-light d-flex justify-content-end">
-
-        <a href="/emp/lead/callmanagement/closeleads" class="btn btn-primary ">completed lead </a>
-        <a href="/emp/logout" class="btn btn-secondary "> logout</a>
-
-
+<body class="bg-color">
+    <nav class="navbar navbar-expand-sm navbar-light">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mx-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/emp/lead/callmanagement/closeleads">completed lead</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link mx-sm-4" href="/emp/logout">logout</a>
+                </li>
+            </ul>
+        </div>
     </nav>
 
-    <div class="container">
-        <h1 class="text-center"> call management </h1>
-        <p class="text-center">click id and assign the employee</p>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col header px-sm-5">
+                <h1> call management </h1>
+                <p>click id and assign the employee</p>
+            </div>
+        </div>
 
 
 
-
-        <table class="table table-striped">
-            <thead class="bg-dark text-white">
-                <tr>
-                    <th scope="col">Customer id</th>
-                    <th scope="col">Customer Name</th>
-                    <th scope="col">Customer email</th>
-                    <th scope="col">lead type</th>
-                    <th scope="col"> lead status</th>
-                    <th scope="col">close desc</th>
-
-
-
-                </tr>
-            </thead>
-            <tbody>
-
-
-
-                <% if(typeof cust !='undefined' ){ %>
-                    <% cust.forEach(i=>{ %>
+        <div class="row">
+            <div class="col px-sm-5 table-responsive">
+                <table class="table table-bordered table-hover">
+                    <thead class="thead">
                         <tr>
-                            <th scope="row">
-                                <a href="/emp/lead/assign/<%- i.c_id %>" style="text-decoration: none; ">
-                                    <%- i.c_id %>
-                                </a>
-
-                            </th>
-                            <td>
-                                <%- i.c_name %>
-                            </td>
-                            <td>
-                                <%- i.c_email %>
-                            </td>
-                            <td>
-                                <%- i.lead_type%>
-                            </td>
-                            <td>
-                                <%- i.lead_status_string%>
-                            </td>
-                            <td>
-                                <%- i.close_desc%>
-                            </td>
-
-
+                            <th scope="col">Customer id</th>
+                            <th scope="col">Customer Name</th>
+                            <th scope="col">Customer email</th>
+                            <th scope="col">lead type</th>
+                            <th scope="col"> lead status</th>
+                            <th scope="col">close desc</th>
                         </tr>
-
-
-
-                        <%}); %>
-                            <% } %>
-
-
-
-
-
-
-
-            </tbody>
-        </table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+                    </thead>
+                    <tbody>
+        
+        
+        
+                        <% if(typeof cust !='undefined' ){ %>
+                            <% cust.forEach(i=>{ %>
+                                <tr>
+                                    <th scope="row">
+                                        <a href="/emp/lead/assign/<%- i.c_id %>" style="text-decoration: none; ">
+                                            <%- i.c_id %>
+                                        </a>
+                                    </th>
+                                    <td>
+                                        <%- i.c_name %>
+                                    </td>
+                                    <td>
+                                        <%- i.c_email %>
+                                    </td>
+                                    <td>
+                                        <%- i.lead_type%>
+                                    </td>
+                                    <td>
+                                        <%- i.lead_status_string%>
+                                    </td>
+                                    <td>
+                                        <%- i.close_desc%>
+                                    </td>
+                                </tr>
+        
+    
+                                <%}); %>
+                                    <% } %>
+        
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"
@@ -127,11 +138,6 @@
         integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj"
         crossorigin="anonymous"></script>
     <script>
-
-
-
-
-
 
 
     </script>
